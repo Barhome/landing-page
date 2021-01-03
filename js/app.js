@@ -31,6 +31,9 @@ const navbarList = document.getElementById("navbar__list");
  */
 
 // build the nav
+window.addEventListener("load", function () {
+  navbarList.innerHTML = `<li><a href="#section1" class="menu__link">Section one</a></li>`;
+});
 
 // Add class 'active' to section when near top of viewport
 
