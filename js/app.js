@@ -18,6 +18,8 @@
  *
  */
 const navbarList = document.getElementById("navbar__list");
+const sectionName = document.querySelectorAll(".section-name");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -32,7 +34,13 @@ const navbarList = document.getElementById("navbar__list");
 
 // build the nav
 window.addEventListener("load", function () {
-  navbarList.innerHTML = `<li><a href="#section1" class="menu__link">Section one</a></li>`;
+  let navbarItems = "";
+  sectionName.forEach(function (item, i) {
+    navbarItems += `<li><a href="#section${i + 1}" class="menu__link">${
+      item.innerHTML
+    }</a></li>`;
+  });
+  navbarList.innerHTML = navbarItems;
 });
 
 // Add class 'active' to section when near top of viewport
