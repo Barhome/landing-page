@@ -32,7 +32,7 @@ const section4 = document.getElementById("section4");
 
 // check if a section is in the viewport
 
-isInView = function (element) {
+const isInView = function (element) {
   let boundries = element.getBoundingClientRect();
   return (
     boundries.top >= 0 &&
@@ -44,25 +44,7 @@ isInView = function (element) {
   );
 };
 
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
-// build the nav
-window.addEventListener("load", function () {
-  let navbarItems = "";
-  sectionName.forEach(function (item, i) {
-    navbarItems += `<li><a href="#section${i + 1}" class="menu__link">${
-      item.innerHTML
-    }</a></li>`;
-  });
-  navbarList.innerHTML = navbarItems;
-});
-
-// Add class 'active' to section when near top of viewport
-document.addEventListener("scroll", function () {
+const scrollPage = function () {
   if (isInView(section1)) {
     setTimeout(function () {
       section1.classList.add("your-active-class");
@@ -95,7 +77,27 @@ document.addEventListener("scroll", function () {
       section4.classList.add("your-active-class");
     }, 500);
   }
+};
+
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ *
+ */
+
+// build the nav
+window.addEventListener("load", function () {
+  let navbarItems = "";
+  sectionName.forEach(function (item, i) {
+    navbarItems += `<li><a href="#section${i + 1}" class="menu__link">${
+      item.innerHTML
+    }</a></li>`;
+  });
+  navbarList.innerHTML = navbarItems;
 });
+
+// Add class 'active' to section when near top of viewport
+document.addEventListener("scroll", scrollPage);
 
 // Scroll to anchor ID using scrollTO event
 navbarMenu.addEventListener("click", function (event) {
