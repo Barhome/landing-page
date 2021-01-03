@@ -17,14 +17,13 @@
  * Define Global Variables
  *
  */
+const navbarMenu = document.querySelector(".navbar__menu");
 const navbarList = document.getElementById("navbar__list");
 const sectionName = document.querySelectorAll(".section-name");
 const section1 = document.getElementById("section1");
 const section2 = document.getElementById("section2");
 const section3 = document.getElementById("section3");
 const section4 = document.getElementById("section4");
-console.log(section1.getBoundingClientRect());
-console.log(section2.getBoundingClientRect());
 /**
  * End Global Variables
  * Start Helper Functions
@@ -45,10 +44,6 @@ isInView = function (element) {
   );
 };
 
-// isOutView = function (element) {
-//   let boundries = element.getBoundingClientRect();
-//   if (boundries.bottom === 0) return true;
-// };
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -103,6 +98,19 @@ document.addEventListener("scroll", function () {
 });
 
 // Scroll to anchor ID using scrollTO event
+navbarMenu.addEventListener("click", function (event) {
+  event.preventDefault();
+  if (event.target.classList.contains("menu__link")) {
+    let sectionId = event.target.getAttribute("href");
+    let selectedSection = document.getElementById(sectionId.slice(1));
+    let boundries = selectedSection.getBoundingClientRect();
+    window.scrollTo({
+      left: boundries.left + window.pageXOffset,
+      top: boundries.top + window.pageYOffset,
+      behavior: "smooth",
+    });
+  }
+});
 
 /**
  * End Main Functions
